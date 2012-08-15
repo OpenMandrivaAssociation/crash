@@ -3,8 +3,8 @@
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-Version: 5.1.8
-Release: 1%{?dist}
+Version: 6.0.4
+Release: 2%{?dist}
 License: GPLv3
 Group: Development/Debuggers
 Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
@@ -14,6 +14,7 @@ ExclusiveArch: %{ix86} ia64 x86_64 ppc64 s390 s390x
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot-%(%{__id_u} -n)
 BuildRequires: ncurses-devel zlib-devel
 Requires: binutils
+Patch0: crash-6.0.4-s390x_fixes.patch
 
 %description
 The core analysis suite is a self-contained tool that can be used to
@@ -34,6 +35,7 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 
 %prep
 %setup -n %{name}-%{version} -q
+%patch0 -p1 -b crash-6.0.4-s390x_fixes.patch
 
 %build
 make RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
@@ -62,6 +64,38 @@ rm -rf %{buildroot}
 %{_includedir}/*
 
 %changelog
+* Wed May  2 2012 Dave Anderson <anderson@redhat.com> - 6.0.4-2.el6
+- Fix s390x "vm -p" to properly handle swapped-out and unmapped
+  user pages.
+- Fix s390x "bt -[tT]" on a live system.
+  Resolves: rhbz#817247
+  Resolves: rhbz#817248
+
+* Mon Feb 27 2012 Dave Anderson <anderson@redhat.com> - 6.0.4-1.el6
+- Rebase to upstream version 6.0.4.
+  Resolves: rhbz#767257
+
+* Tue Feb 14 2012 Dave Anderson <anderson@redhat.com> - 6.0.3-1.el6
+- Support sadump dumpfile formats for Fujitsu Stand Alone Dump facility.
+  Resolves: rhbz#736884
+- Support s390x ELF-kdump and s390x compressed-kdump dumpfiles.
+  Resolves: rhbz#738865 
+- Display an early warning message if any part of the kernel has been 
+  erased/filtered by the makedumpfile facility.
+  Resolves: rhbz#739096
+- Fix for the "runq" command for kernels that are configured with
+  CONFIG_FAIR_GROUP_SCHED.
+  Resolves: rhbz#754291
+- Fix for the x86_64 "bt" command to handle a recursive entry into
+  the NMI exception stack.
+  Resolves: rhbz#768189
+- Fix for an x86_64 "bt" command segmentation violation if the number
+  of ELF_PRSTATUS notes in a compressed-kdump do not match the number
+  of cpus running when the system crashed.
+  Resolves: rhbz#782837 
+- Rebase to upstream version 6.0.3.
+  Resolves: rhbz#767257
+
 * Mon Sep 19 2011 Dave Anderson <anderson@redhat.com> - 5.1.8-1.el6
 - Rebase to upstream version 5.1.8.
   Resolves: rhbz#710193
