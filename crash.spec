@@ -3,8 +3,8 @@
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-Version: 6.0.4
-Release: 2%{?dist}
+Version: 6.1.0
+Release: 1%{?dist}
 License: GPLv3
 Group: Development/Debuggers
 Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
@@ -14,7 +14,6 @@ ExclusiveArch: %{ix86} ia64 x86_64 ppc64 s390 s390x
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot-%(%{__id_u} -n)
 BuildRequires: ncurses-devel zlib-devel
 Requires: binutils
-Patch0: crash-6.0.4-s390x_fixes.patch
 
 %description
 The core analysis suite is a self-contained tool that can be used to
@@ -35,7 +34,6 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 
 %prep
 %setup -n %{name}-%{version} -q
-%patch0 -p1 -b crash-6.0.4-s390x_fixes.patch
 
 %build
 make RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
@@ -64,6 +62,19 @@ rm -rf %{buildroot}
 %{_includedir}/*
 
 %changelog
+* Mon Oct  1 2012 Dave Anderson <anderson@redhat.com> - 6.1.0-1.el6
+- Rebase to upstream version 6.1.0.
+  Resolves: rhbz#840051
+
+* Thu Aug 23 2012 Dave Anderson <anderson@redhat.com> - 6.0.9-1.el6
+- Fix for "crash: cannot resolve: xtime" session invocation failure.
+  Resolves: rhbz#843093
+- Enhance "struct" command to accept -o option with an address argument.
+  Resolves: rhbz#834260
+- Rebase to upstream version 6.0.9.
+- Support for compressed/filtered ppc64 firmware-assisted dump (fadump).
+  Resolves: rhbz#840051
+
 * Wed May  2 2012 Dave Anderson <anderson@redhat.com> - 6.0.4-2.el6
 - Fix s390x "vm -p" to properly handle swapped-out and unmapped
   user pages.
