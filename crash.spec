@@ -1,3 +1,5 @@
+%define Werror_cflags %{nil}
+
 #
 # crash core analysis suite
 #
@@ -34,7 +36,8 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 %setup -n %{name}-%{version} -q
 
 %build
-make RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
+export ERROR_ON_WARNING=no
+make GDB_CONF_FLAGS="--disable-Werror" RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
 
 %install
 mkdir -p %{buildroot}%{_bindir}
