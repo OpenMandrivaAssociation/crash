@@ -6,11 +6,10 @@ Name: crash
 Version: 6.1.0
 Release: 1%{?dist}
 License: GPLv3
-Group: Development/Debuggers
+Group: System/Configuration/Hardware
 Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
 URL: http://people.redhat.com/anderson
 ExclusiveOS: Linux
-ExclusiveArch: %{ix86} ia64 x86_64 ppc64 s390 s390x
 BuildRequires: ncurses-devel zlib-devel
 Requires: binutils
 
@@ -23,7 +22,7 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 %package devel
 Requires: %{name} = %{version}, zlib-devel
 Summary: kernel crash and live system analysis utility
-Group: Development/Debuggers
+Group: System/Configuration/Hardware
 
 %description devel
 The core analysis suite is a self-contained tool that can be used to
@@ -38,7 +37,6 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 make RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
 
 %install
-rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 make DESTDIR=%{buildroot} install
 mkdir -p %{buildroot}%{_mandir}/man8
