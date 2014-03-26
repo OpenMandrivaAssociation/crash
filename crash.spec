@@ -5,14 +5,14 @@
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-Version: 6.1.0
+Version: 7.0.1
 Release: 1%{?dist}
 License: GPLv3
 Group: System/Configuration/Hardware
 Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
 URL: http://people.redhat.com/anderson
 ExclusiveOS: Linux
-BuildRequires: ncurses-devel zlib-devel
+BuildRequires: ncurses-devel zlib-devel bison
 Requires: binutils
 
 %description
@@ -36,8 +36,7 @@ offered by Mission Critical Linux, or the LKCD kernel patch.
 %setup -n %{name}-%{version} -q
 
 %build
-export ERROR_ON_WARNING=no
-make GDB_CONF_FLAGS="--disable-Werror" RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
+make ERROR_ON_WARNING=no RPMPKG="%{version}-%{release}" CFLAGS="%{optflags}"
 
 %install
 mkdir -p %{buildroot}%{_bindir}
