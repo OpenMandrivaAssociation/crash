@@ -1,30 +1,18 @@
-<<<<<<< HEAD
 %define _disable_ld_no_undefined 1
-=======
-%define Werror_cflags %{nil}
->>>>>>> 572045f50ce4af4155f2664ccb246ea23601ad1c
 
 #
 # crash core analysis suite
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-<<<<<<< HEAD
 Version: 7.0.6
-=======
-Version: 7.0.1
->>>>>>> 572045f50ce4af4155f2664ccb246ea23601ad1c
 Release: 1%{?dist}
 License: GPLv3
 Group: System/Configuration/Hardware
 Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
 URL: http://people.redhat.com/anderson
 ExclusiveOS: Linux
-<<<<<<< HEAD
 BuildRequires: ncurses-devel zlib-devel bison flex
-=======
-BuildRequires: ncurses-devel zlib-devel bison
->>>>>>> 572045f50ce4af4155f2664ccb246ea23601ad1c
 Requires: binutils
 
 
