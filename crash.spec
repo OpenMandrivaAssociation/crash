@@ -9,7 +9,7 @@ Version: 7.0.6
 Release: 1%{?dist}
 License: GPLv3
 Group: System/Configuration/Hardware
-Source: http://people.redhat.com/anderson/crash-%{version}.tar.gz
+Source0: http://people.redhat.com/anderson/crash-%{version}.tar.gz
 URL: http://people.redhat.com/anderson
 ExclusiveOS: Linux
 BuildRequires: ncurses-devel zlib-devel bison flex
