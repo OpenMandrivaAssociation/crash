@@ -5,8 +5,8 @@
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-Version: 7.0.6
-Release: 1%{?dist}
+Version:	7.2.6
+Release:	1
 License: GPLv3
 Group: System/Configuration/Hardware
 Source0: http://people.redhat.com/anderson/crash-%{version}.tar.gz
