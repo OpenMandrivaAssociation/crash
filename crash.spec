@@ -5,7 +5,7 @@
 #
 Summary: Kernel crash and live system analysis utility
 Name: crash
-Version:	7.2.6
+Version:	7.2.7
 Release:	1
 License: GPLv3
 Group: System/Configuration/Hardware
