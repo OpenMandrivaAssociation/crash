@@ -10,7 +10,7 @@ Release:	1
 License: GPLv3
 Group: System/Configuration/Hardware
 Source0: http://people.redhat.com/anderson/crash-%{version}.tar.gz
-URL: http://people.redhat.com/anderson
+URL: https://people.redhat.com/anderson
 ExclusiveOS: Linux
 BuildRequires: ncurses-devel zlib-devel bison flex
 Requires: binutils
