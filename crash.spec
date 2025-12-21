@@ -12,6 +12,7 @@ Group: System/Configuration/Hardware
 Source0: http://people.redhat.com/anderson/crash-%{version}.tar.gz
 URL: https://people.redhat.com/anderson
 ExclusiveOS: Linux
+BuildRequires:	make
 BuildRequires: ncurses-devel zlib-devel bison flex
 Requires: binutils
 
